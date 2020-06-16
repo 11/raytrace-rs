@@ -26,20 +26,6 @@ impl Vec3 {
     Vec3 { x, y, z }
   }
 
-  pub fn dot(u: &Vec3, v: &Vec3) -> f64 {
-    (u.x * v.x ) +
-    (u.y * v.y ) +
-    (u.z * v.z )
-  }
-
-  pub fn cross(u: &Vec3, v: &Vec3) -> Self {
-    Self {
-      x: (u.y * u.z - u.z * u.y),
-      y: (u.z * u.x - u.x * u.z),
-      z: (u.x * u.y - u.y * u.x),
-    }
-  }
-
   pub fn len(&self) -> f64 {
     self.len_sqrd().sqrt()
   }
@@ -49,6 +35,27 @@ impl Vec3 {
     (self.y * self.y) +
     (self.z * self.z)
   }
+}
+
+
+/* Vec3 Utility Functions */
+
+pub fn dot(u: &Vec3, v: &Vec3) -> f64 {
+  (u.x * v.x ) +
+  (u.y * v.y ) +
+  (u.z * v.z )
+}
+
+pub fn cross(u: &Vec3, v: &Vec3) -> Vec3 {
+  Vec3 {
+    x: (u.y * u.z - u.z * u.y),
+    y: (u.z * u.x - u.x * u.z),
+    z: (u.x * u.y - u.y * u.x),
+  }
+}
+
+pub fn unit_vector(v: &Vec3) -> Vec3 {
+  *v / v.len()
 }
 
 
@@ -106,7 +113,6 @@ impl Div<f64> for Vec3 {
     self * (1_f64 / scalar)
   }
 }
-
 
 impl Neg for Vec3 {
   type Output = Vec3;

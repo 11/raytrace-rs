@@ -1,8 +1,9 @@
-use crate::Vec3;
+use crate::vec3::{Vec3, Point3};
 
-struct Ray {
-  origin: Point3,
-  direction: Vec3,
+
+pub struct Ray {
+  pub origin: Point3,
+  pub direction: Vec3,
 }
 
 impl Ray {
@@ -11,8 +12,8 @@ impl Ray {
     Ray { origin, direction }
   }
 
-  pub fn at(&self, t: f64) -> f64 {
-    self.origin + (t * self.direction);
+  pub fn at(&self, t: f64) -> Point3 {
+    self.origin + (self.direction*t)
   }
 
 }
